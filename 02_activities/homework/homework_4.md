@@ -21,13 +21,18 @@ Find the NULLs and then using COALESCE, replace the NULL with a blank for the fi
 
 SELECT 
 product_name || ', ' || coalesce(product_size,'')|| ' (' || coalesce(product_qty_type, 'unit') || ')'
-FROM product
+FROM product;
 
 # Windowed Functions
 1. Write a query that selects from the customer_purchases table and numbers each customer’s visits to the farmer’s market (labeling each market date with a different number). Each customer’s first visit is labeled 1, second visit is labeled 2, etc. 
 
 You can either display all rows in the customer_purchases table, with the counter changing on each new market date for each customer, or select only the unique market dates per customer (without purchase details) and number those visits. 
 **HINT**: One of these approaches uses ROW_NUMBER() and one uses DENSE_RANK().
+SELECT DISTINCT
+	customer_id
+	,market_date
+	,dense_rank() OVER (PARTITION by customer_id order by market_date ASC) as visit_number
+	from customer_purchases;
 
 2. Reverse the numbering of the query from a part so each customer’s most recent visit is labeled 1, then write another query that uses this one as a subquery (or temp table) and filters the results to only the customer’s most recent visit.
 

@@ -19,7 +19,7 @@ All the other rows will remain the same.) */
 
 SELECT 
 product_name || ', ' || coalesce(product_size,'')|| ' (' || coalesce(product_qty_type, 'unit') || ')'
-FROM product
+FROM product;
 
 
 --Windowed Functions
@@ -31,6 +31,12 @@ You can either display all rows in the customer_purchases table, with the counte
 each new market date for each customer, or select only the unique market dates per customer 
 (without purchase details) and number those visits. 
 HINT: One of these approaches uses ROW_NUMBER() and one uses DENSE_RANK(). */
+
+SELECT DISTINCT
+	customer_id
+	,market_date
+	,dense_rank() OVER (PARTITION by customer_id order by market_date ASC) as visit_number
+	from customer_purchases;
 
 
 /* 2. Reverse the numbering of the query from a part so each customer’s most recent visit is labeled 1, 
