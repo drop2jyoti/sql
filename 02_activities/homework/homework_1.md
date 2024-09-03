@@ -78,4 +78,4 @@ Please do not pick the exact same tables that I have already diagramed. For exam
 
 
 
-![Home work 1 model diagram](/sql/02_activities/homework/images/Homework-1-model-diagram.png)
+![Home work 1 model diagram](./images/Homework-1-model-diagram.png)
