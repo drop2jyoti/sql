@@ -54,7 +54,9 @@ Remove any trailing or leading whitespaces. Don't just use a case statement for 
 
 Hint: you might need to use INSTR(product_name,'-') to find the hyphens. INSTR will help split the column. */
 
-
+SELECT 
+product_name || ', ' || coalesce(product_size,'')|| ' (' || coalesce(product_qty_type, 'unit') || ')'
+FROM product
 
 /* 2. Filter the query to show any product_size value that contain a number with REGEXP. */
 
