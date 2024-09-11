@@ -21,9 +21,10 @@ filtered by vendor IDs between 8 and 10 (inclusive) using either:
 	1.  two conditions using AND
 	2.  one condition using BETWEEN
 */
+-- two conditions using AND
 SELECT *, quantity * cost_to_customer_per_qty as price FROM customer_purchases WHERE vendor_id >= 8 AND vendor_id <= 10;
-
-SELECT *, quantity * cost_to_customer_per_qty as price FROM customer_purchases WHERE vendor_id >= 8 AND vendor_id <= 10;
+-- one condition using
+SELECT *,  quantity*cost_to_customer_per_qty as price FROM customer_purchases WHERE vendor_id BETWEEN 8 and 10;
 
 --CASE
 /* 1. Products can be sold by the individual unit or by bulk measures like lbs. or oz. 
