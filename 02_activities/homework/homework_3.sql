@@ -59,5 +59,5 @@ strftime('%m', market_date) as month,
 strftime('%Y', market_date) as year,
 sum(quantity * cost_to_customer_per_qty) as spendings 
 FROM customer_purchases
-WHERE month = '04' and year = '2019'
+WHERE month = '04' and year = '2022'
 GROUP BY customer_id;
