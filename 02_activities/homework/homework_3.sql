@@ -47,7 +47,7 @@ strftime('%m', market_date) as month,
 strftime('%Y', market_date) as year
 FROM customer_purchases;
 
-/* 2. Using the previous query as a base, determine how much money each customer spent in April 2019. 
+/* 2. Using the previous query as a base, determine how much money each customer spent in April 2022. 
 Remember that money spent is quantity*cost_to_customer_per_qty. 
 
 HINTS: you will need to AGGREGATE, GROUP BY, and filter...
