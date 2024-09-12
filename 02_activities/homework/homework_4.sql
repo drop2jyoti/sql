@@ -50,9 +50,9 @@ only the customer’s most recent visit. */
 
 SELECT * FROM
     (
-        SELECT DISTINCT market_date, customer_id, DENSE_RANK() OVER (PARTITION BY customer_id ORDER BY market_date DESC) customer_visit_number FROM customer_purchases
-    )   visit_dates WHERE visit_dates.customer_visit_number = 1;
-
+        SELECT  DISTINCT customer_id, market_date, DENSE_RANK() OVER (PARTITION BY customer_id ORDER BY market_date DESC) customer_visit_number FROM customer_purchases
+    ) as  unique_visits WHERE unique_visits.customer_visit_number = 1;
+    
 /* 3. Using a COUNT() window function, include a value along with each row of the 
 customer_purchases table that indicates how many different times that customer has purchased that product_id. */
 
