@@ -9,6 +9,21 @@ Think a bit about the row counts: how many distinct vendors, product names are t
 How many customers are there (y). 
 Before your final group by you should have the product of those two queries (x*y).  */
 
+SELECT
+    v.vendor_name,
+    p.product_name,
+    SUM(5 * vi.original_price * c.customer_count) AS total_per_product
+FROM
+    vendor v
+JOIN
+    vendor_inventory vi ON v.vendor_id = vi.vendor_id
+JOIN
+    product p ON vi.product_id = p.product_id
+CROSS JOIN
+    (SELECT COUNT(DISTINCT customer_id) AS customer_count FROM customer) c
+GROUP BY
+    v.vendor_name,
+    p.product_name;
 
 
 -- INSERT
