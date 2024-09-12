@@ -74,7 +74,7 @@ Hint: you might need to use INSTR(product_name,'-') to find the hyphens. INSTR w
 
 SELECT *,
 CASE
-			WHEN INSTR(product_name,'-') > 0 THEN LTRIM(SUBSTR(product_name, INSTR(product_name,'-')+1))
+			WHEN INSTR(product_name,'-') > 0 THEN TRIM(SUBSTR(product_name, INSTR(product_name,'-')+1))
             ELSE NULL
 			END AS description
 FROM product;
@@ -83,7 +83,7 @@ FROM product;
 /* 2. Filter the query to show any product_size value that contain a number with REGEXP. */
 SELECT *,
 CASE
-			WHEN INSTR(product_name,'-') > 0 THEN LTRIM(SUBSTR(product_name, INSTR(product_name,'-')+1))
+			WHEN INSTR(product_name,'-') > 0 THEN TRIM(SUBSTR(product_name, INSTR(product_name,'-')+1))
             ELSE NULL
 			END AS description
 FROM product 
@@ -99,26 +99,22 @@ HINT: There are a possibly a few ways to do this query, but if you're struggling
 "best day" and "worst day"; 
 3) Query the second temp table twice, once for the best day, once for the worst day, 
 with a UNION binding them. */
+-- 1
 DROP TABLE IF EXISTS temp_sales;
 
 CREATE TEMP TABLE temp_sales AS
-
-SELECT market_date, quantity, cost_to_customer_per_qty, quantity * cost_to_customer_per_qty as sales
-FROM customer_purchases;
-
+    SELECT market_date, quantity, cost_to_customer_per_qty, quantity * cost_to_customer_per_qty as sales
+    FROM customer_purchases;
+--2
 DROP TABLE IF EXISTS temp_sum_sales;
-
 CREATE TEMP TABLE temp_sum_sales AS
-
-SELECT market_date, SUM(sales) AS sales
-FROM temp_sales
-GROUP BY market_date;
-
+    SELECT market_date, SUM(sales) AS sales
+    FROM temp_sales
+    GROUP BY market_date;
+--3
 SELECT market_date, MAX(sales) AS sales, "best_day" AS status
 FROM temp_sum_sales
-
 UNION
-
 SELECT market_date, MIN(sales) AS sales, "worst_day" AS status
 FROM temp_sum_sales;
 
