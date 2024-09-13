@@ -39,7 +39,11 @@ Review the AdventureWorks Schema [here](https://i.stack.imgur.com/LMu4W.gif)
 
 Highlight at least two differences between it and your ERD. Would you change anything in yours?
 ```
-Your answer...
+1. Complexity and Scope
+   AdventureWorks schema is more complex with many more entities, including detailed tables for functions like 'Production', 'Sales', 'HumanResources','Credit card' etc. The bookstore schema is much simpler, focusing on core entities like employees, orders, sales, customers, and books.
+
+2. Normalization
+    AdventureWorks schema is following the principals of  normalization with many relationships and reference tables. The bookstore schema is relatively straightforward, with fewer tables and relationships, focusing on essential business functions.
 ```
 
 # Criteria
