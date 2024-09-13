@@ -17,7 +17,21 @@ _Hint, search type 1 vs type 2 slowly changing dimensions._
 
 Bonus: Are there privacy implications to this, why or why not?
 ```
-Your answer...
+Type 1 SCDs - Overwriting
+
+In a Type 1 SCD the new data overwrites the existing data. Thus the existing data is lost as it is not stored anywhere else. This is the default type of dimension you create. You do not need to specify any additional information to create a Type 1 SCD.
+
+Type 2 SCDs - Creating another dimension record
+
+A Type 2 SCD retains the full history of values. When the value of a chosen attribute changes, the current record is closed. A new record is created with the changed data values and this new record becomes the current record. Each record contains the effective time and expiration time to identify the time period between which the record was active.
+
+Store is intending to implement Type 2 approach. There are ofcourse various privacy implications to this for ex -
+
+1) Addresses are considered PII and Bookstore team should consider the prominent data protection and privacy laws and regulations based on the country/region they are going to store the customer information of.
+2) Storing addresses in a database also involves implementing appropriate security measures to protect address data against unauthorized access and breaches. Data breaches can result in significant financial, reputational, and legal damages for the organization and the data subjects. They can also expose the organization to regulatory fines, penalties, civil lawsuits, and claims. They need to consider the security measures that can help prevent and mitigate data breaches for example - data encryption , data backups, data access controls, data rentention policies etc.
+
+(https://www.geopostcodes.com/blog/best-practices-storing-addresses/)
+
 ```
 
 ## Question 4
